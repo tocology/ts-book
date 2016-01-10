@@ -1,6 +1,10 @@
 # Typescript Book Repository
 ## Development
-* Test
+* Build
+```console
+npm install -g typescript@next
+```
+* Test (not supported yet(1/10))
 ```console
 > gulp
 ```
