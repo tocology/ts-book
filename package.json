@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/tocology/ts-book.git"
   },
-  "keywords":[
+  "keywords": [
     "typescript",
     "demo",
     "example"
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/tocology/ts-book#readme",
   "devDependencies": {
+    "gulp": "^3.9.0",
     "gulp-typescript": "^2.10.0"
   },
   "dependencies": {
