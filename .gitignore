@@ -1,4 +1,5 @@
-/temp
+# temp files (bundle)
+temp/
 
 # npm
 node_modules/
