@@ -2,7 +2,7 @@
 ## Development
 * Build
 ```console
-npm install -g typescript@next
+npm install -g typescript@next bower
 npm install
 ```
 * Test (not supported yet(1/10))
