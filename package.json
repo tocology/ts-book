@@ -23,6 +23,7 @@
   "homepage": "https://github.com/tocology/ts-book#readme",
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-tslint": "^4.2.2",
     "gulp-typescript": "^2.10.0"
   },
   "dependencies": {
