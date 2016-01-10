@@ -2,7 +2,9 @@ var gulp         = require('gulp');
 var tslint       = require('gulp-tslint');
 var ts           = require('gulp-typescript');
 var browserify   = require('browserify'),
-    transform    = require('vinyl-transform'),
+    transform    = require('vinyl-transform'), // has an error (ref: https://github.com/substack/node-browserify/issues/1191)
+    source       = require('vinyl-source-stream'),
+    buffer       = require('vinyl-buffer'),
     uglify       = require('gulp-uglify'),
     sourcemaps   = require('gulp-sourcemaps');
 var runSequence  = require('run-sequence');
@@ -70,18 +72,31 @@ gulp.task('bundle', function(cb){
 });
 
 gulp.task('bundle-js', function(){
+  /**
   return gulp.src('./temp/source/js/main.js')
              .pipe(browserified)
              .pipe(sourcemaps.init({ loadMaps: true }))
              .pipe(uglify())
              .pipe(sourcemaps.write('./'))
              .pipe(gulp.dest('./dist/source/js/'));
+             */
+  return browserify({ entries: './temp/source/js/main.js', debug: true }).bundle()
+         .pipe(source('main.js'))
+         .pipe(buffer())
+         .pipe(sourcemaps.init({ loadMaps: true }))
+         .pipe(uglify())
+         .pipe(sourcemaps.write('./'))
+         .pipe(gulp.dest('./dist/source/js/'));
 });
 
 gulp.task('bundle-test', function(){
-  return gulp.src('./temp/test/**/**.test.js')
-             .pipe(browserified)
-             .pipe(gulp.dest('./dist/test'));
+  // return gulp.src('./temp/test/**/**.test.js')
+  //            .pipe(browserified)
+  //            .pipe(gulp.dest('./dist/test/'));
+  return browserify({ entries: './temp/test/**/**.test.js', debug: true }).bundle()
+         .pipe(source('main.test.js'))
+         .pipe(buffer())
+         .pipe(gulp.dest('./dist/test/'));
 });
 
 // test task
