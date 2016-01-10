@@ -2,7 +2,7 @@
 ## Development
 * Build
 ```console
-npm install -g typescript@next bower
+npm install -g typescript@next bower tsd
 npm install
 bower install
 ```
