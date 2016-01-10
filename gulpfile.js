@@ -31,7 +31,7 @@ gulp.task('tsc', function(){
              .js.pipe(gulp.dest('./temp/source/js'));
 });
 
-gulp.task('tsc-tests', fu nction(){
+gulp.task('tsc-tests', function(){
   return gulp.src('./test/**/**.test.ts')
              .pipe(ts(tsTestProject))
              .js.pipe(gulp.dest('./temp/test'));
