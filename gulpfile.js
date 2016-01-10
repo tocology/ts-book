@@ -6,6 +6,7 @@ var browserify  = require('browserify'),
     uglify      = require('gulp-uglify'),
     sourcemaps  = require('gulp-sourcemaps');
 var runSequence = require('run-sequence');
+var karma       = require('gulp-karma');
 
 var tsProject = ts.createproject({  // ref: https://github.com/ivogabe/gulp-typescript
   removecomments : true, // do not emit comments to output.
@@ -70,4 +71,17 @@ gulp.task('bundle-test', function(){
   return gulp.src('./temp/test/**/**.test.js')
              .pipe(browserified)
              .pipe(gulp.dest('./dist/test'));
+});
+
+gulp.task('karma', function(cb){
+  gulp.src('./dist/test/**/**.test.js')
+      .pipe(karma({
+        configFile: 'karma.conf.js',
+        action: 'run'
+      }))
+      .on('end', cb)
+      .on('error', function(err){
+        // Make sure failed tests cause gulp to exit non-zero
+        throw err;
+      });
 });
