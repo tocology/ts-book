@@ -5,7 +5,7 @@
   "authors": [
     "tocology <hwangjun7777@gmail.com>"
   ],
-  "description": "bower package management for typescript book example",
+  "description": "bower package manager for typescript book example",
   "keywords": [
     "typescript",
     "demo",
