@@ -2,7 +2,7 @@
 ## Development
 ###  Build
 ```console
-npm install -g typescript@next bower tsd gulp
+npm install -g typescript@next bower tsd gulp browser-sync
 npm install
 bower install
 tsd install
@@ -11,4 +11,3 @@ tsd install
 ```console
 gulp
 ```
-
