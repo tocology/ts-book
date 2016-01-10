@@ -10,6 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/tocology/ts-book.git"
   },
+  "keywords":[
+    "typescript",
+    "demo",
+    "example"
+  ],
   "author": "tocology <hwangjun7777@gmail.com>",
   "license": "MIT",
   "bugs": {
