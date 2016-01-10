@@ -10,14 +10,14 @@ var karma        = require('gulp-karma');
 var browserSync  = require('browser-sync');
 
 // create typescript project (using tsconfig.json, not yet)
-var tsProject = ts.createproject({  // ref: https://github.com/ivogabe/gulp-typescript
+var tsProject = ts.createProject({  // ref: https://github.com/ivogabe/gulp-typescript
   removecomments : true, // do not emit comments to output.
   noimplicitany : true, // warn on expressions and declarations with an implied 'any' type.
   target: 'ES3', // specify ecmascript target version: 'es3' (default), 'es5' or 'es6'.
   module: 'commonjs', // specify module code generation: 'commonjs', 'amd', 'umd' or 'system'.
   declarationfiles: false // declaration (boolean) - generates corresponding .d.ts files. you need to pipe the dts streams to save these files.
 });
-var tsTestProject = ts.createproject({
+var tsTestProject = ts.createProject({
   removecomments : true,
   noimplicitany : true,
   target: 'ES3',
