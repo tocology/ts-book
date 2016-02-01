@@ -10,3 +10,6 @@ bower_components/
 
 # tsd
 typings/
+
+# log
+.idea
