@@ -1,0 +1,27 @@
+{
+  "name": "ts-book",
+  "description": "repository for learning typescript",
+  "main": "index.html",
+  "authors": [
+    "tocology <hwangjun7777@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "typescript"
+  ],
+  "homepage": "https://github.com/tocology/ts-book",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.0"
+  },
+  "devDependencies": {
+    "jasmine-core": "jasmine#~2.4.1"
+  }
+}
