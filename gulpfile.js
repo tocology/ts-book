@@ -1,5 +1,8 @@
 'use-strict';
 
+var glob        = require('glob');
+var path        = require('path');
+
 var gulp        = require('gulp');
 var tslint      = require('gulp-tslint');
 var ts          = require('gulp-typescript');
@@ -8,6 +11,7 @@ var browserify  = require('browserify'),
     uglify      = require('gulp-uglify'),
     sourcemaps  = require('gulp-sourcemaps'),
     buffer      = require('vinyl-buffer');
+var runSequence = require('run-sequence');
 
 // options reference: https://www.npmjs.com/package/gulp-typescript
 var tsProject = ts.createProject({
@@ -38,23 +42,32 @@ gulp.task('tsc-tests', function(){
 });
 
 gulp.task('bundle-js', function(){
-  // var browserified = transform(function(filename) {
-  //   var b = browserify({ entries: filename, debug: true });
-  //   return b.bundle();
-  // });
-  var browserified = function(filename) {
-    var b = rowserify({ entries: filename, debug: true });
-    return b.bundle();
-  }
-
-  return gulp.src('./temp/source/js/main.js')
-    .pipe(browserified)
-    .pipe(source())
+  return browserify('./temp/source/js/main.js')
+    .bundle()
+    .pipe(source('main.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(uglify())
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./dist/source/js/'));
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./dist/source/js'));
 });
 
-gulp.task('default', ['lint', 'tsc', 'tsc-tests', 'bundle-js']);
+gulp.task('bundle-test', function(){
+  glob('./temp/test/**/**.test.js', function(err, filename){
+    browserify(filename)
+    .bundle()
+    .pipe(source(path.basename(filename)))
+    .pipe(gulp.dest('./dist/test/'));
+  })
+})
+
+gulp.task('default', function(cb){
+  runSequence(
+    'lint',
+    'tsc',
+    'tsc-tests',
+    'bundle-js',
+    'bundle-test',
+    cb
+  );
+});
