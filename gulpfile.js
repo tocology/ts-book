@@ -9,4 +9,3 @@ gulp.task('lint', function(){
 });
 
 gulp.task('default', ['lint']);
-});
