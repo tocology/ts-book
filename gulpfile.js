@@ -12,6 +12,7 @@ var browserify  = require('browserify'),
     sourcemaps  = require('gulp-sourcemaps'),
     buffer      = require('vinyl-buffer');
 var runSequence = require('run-sequence');
+var karma       = require('gulp-karma');
 
 // options reference: https://www.npmjs.com/package/gulp-typescript
 var tsProject = ts.createProject({
@@ -59,15 +60,28 @@ gulp.task('bundle-test', function(){
     .pipe(source(path.basename(filename)))
     .pipe(gulp.dest('./dist/test/'));
   })
-})
+});
+
+gulp.task('karma', function(cb){
+  gulp.src('./dist/test/**/**.test.js')
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'run'
+    }))
+    .on('end', cb)
+    .on('error', function(err){
+      // Make sure failed tests cause gulp to exit non-zero
+      throw err;
+    });
+});
 
 gulp.task('default', function(cb){
   runSequence(
     'lint',
-    'tsc',
-    'tsc-tests',
-    'bundle-js',
-    'bundle-test',
+    ['tsc', 'tsc-tests'],
+    ['bundle-js', 'bundle-test'],
+    'karma',
+    'browser-sync',
     cb
   );
 });
