@@ -24,4 +24,10 @@ gulp.task('tsc', function(){
     .js.pipe(gulp.dest('./temp/source/js'));
 });
 
-gulp.task('default', ['lint']);
+gulp.task('tsc-test', function(){
+  return gulp.src('./test/**/**.test.ts')
+    .pipe(ts(tsProject))
+    .js.pipe(gulp.dest('./temp/test/'));
+});
+
+gulp.task('default', ['lint', 'tsc', 'tsc-tests']);
