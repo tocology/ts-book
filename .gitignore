@@ -1,5 +1,9 @@
-# temp files (bundle)
+# temp javascript files (bundle)
 temp/
+
+# dist files (it can be generated)
+dist/
+
 
 # npm
 node_modules/
@@ -13,3 +17,4 @@ typings/
 
 # log
 .idea
+**/**/.DS_Store
