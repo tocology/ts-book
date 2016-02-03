@@ -75,6 +75,20 @@ gulp.task('karma', function(cb){
     });
 });
 
+gulp.task('build', function(cb) {
+  runSequence('lint', ['tsc', 'tsc-tests'], cb);
+});
+
+gulp.task('bundle', function(cb){
+  runSequence('build', [
+    'bundle-js', 'bundle-test'
+  ], cb);
+});
+
+gulp.task('test', function(cb){
+  runSequence('bundle', ['karma'], cb);
+})
+
 gulp.task('default', function(cb){
   runSequence(
     'lint',
