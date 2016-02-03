@@ -1,9 +1,10 @@
+// http://karma-runner.github.io/0.8/config/configuration-file.html
 module.exports = function (config) {
   'use strict';
   config.set({
     basePath: '',
     frameworks: ['mocha', 'chai', 'sinon'],
-    browsers: ['phantomJS'],
+    browsers: ['PhantomJS'],
     reporters: ['progress', 'coverage'],
     plugins: [
       'karma-coverage',
@@ -13,7 +14,7 @@ module.exports = function (config) {
       'karma-phantomjs-launcher'
     ],
     preprocessors: {
-      './dist/test/*.test.js' : ['coverage']
+      './dist/test/*.test.js': ['coverage']
     },
     port: 9876,
     colors: true,
