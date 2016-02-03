@@ -4,6 +4,8 @@ temp/
 # dist files (it can be generated)
 dist/
 
+# coverage
+coverage/
 
 # npm
 node_modules/
