@@ -1,18 +1,19 @@
 'use-strict';
 
-var glob        = require('glob');
-var path        = require('path');
+var glob          = require('glob');
+var path          = require('path');
 
-var gulp        = require('gulp');
-var tslint      = require('gulp-tslint');
-var ts          = require('gulp-typescript');
-var browserify  = require('browserify'),
-    source      = require('vinyl-source-stream'),
-    uglify      = require('gulp-uglify'),
-    sourcemaps  = require('gulp-sourcemaps'),
-    buffer      = require('vinyl-buffer');
-var runSequence = require('run-sequence');
-var karma       = require('gulp-karma');
+var gulp          = require('gulp');
+var tslint        = require('gulp-tslint');
+var ts            = require('gulp-typescript');
+var browserify    = require('browserify'),
+    source        = require('vinyl-source-stream'),
+    uglify        = require('gulp-uglify'),
+    sourcemaps    = require('gulp-sourcemaps'),
+    buffer        = require('vinyl-buffer');
+var runSequence   = require('run-sequence');
+var karma         = require('gulp-karma');
+var browserSync   = require('browser-sync');
 
 // options reference: https://www.npmjs.com/package/gulp-typescript
 var tsProject = ts.createProject({
@@ -21,7 +22,15 @@ var tsProject = ts.createProject({
   target: 'ES3',
   module: 'commonjs',
   declarations: false
-})
+});
+
+var tsTestProject = ts.createProject({
+  removeComments: true,
+  noImplicitAny: true,
+  target: 'ES3',
+  module: 'commonjs',
+  declarations: false
+});
 
 gulp.task('lint', function(){
   return gulp.src([
@@ -38,7 +47,7 @@ gulp.task('tsc', function(){
 
 gulp.task('tsc-tests', function(){
   return gulp.src('./test/**/**.test.ts')
-    .pipe(ts(tsProject))
+    .pipe(ts(tsTestProject))
     .js.pipe(gulp.dest('./temp/test/'));
 });
 
@@ -87,6 +96,22 @@ gulp.task('bundle', function(cb){
 
 gulp.task('test', function(cb){
   runSequence('bundle', ['karma'], cb);
+});
+
+gulp.task('browser-sync', ['test'], function(){
+  browserSync({
+    server: {
+      baseDir: "./dist"
+    }
+  });
+
+  return gulp.watch([
+    "./dist/source/js/**/*.js",
+    "./dist/source/css/**.css",
+    "./dist/test/**/**.test.js",
+    "./dist/data/**/**",
+    "./index.html"
+  ], [browserSync.reload]);
 })
 
 gulp.task('default', function(cb){
