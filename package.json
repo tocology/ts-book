@@ -25,6 +25,8 @@
     "chai": "^3.5.0",
     "glob": "^6.0.4",
     "gulp": "^3.9.0",
+    "gulp-docco": "0.0.4",
+    "gulp-header": "^1.7.1",
     "gulp-karma": "0.0.5",
     "gulp-nightwatch": "^0.2.8",
     "gulp-run": "^1.6.12",

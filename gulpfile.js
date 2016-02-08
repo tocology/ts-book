@@ -5,12 +5,14 @@ var path          = require('path');
 
 var gulp          = require('gulp');
 var tslint        = require('gulp-tslint');
-var ts            = require('gulp-typescript');
+var tsc           = require('gulp-typescript');
 var browserify    = require('browserify'),
     source        = require('vinyl-source-stream'),
     uglify        = require('gulp-uglify'),
     sourcemaps    = require('gulp-sourcemaps'),
     buffer        = require('vinyl-buffer');
+var run           = require('gulp-run');
+var
 var runSequence   = require('run-sequence');
 var karma         = require('gulp-karma');
 var browserSync   = require('browser-sync');
@@ -41,13 +43,13 @@ gulp.task('lint', function(){
 
 gulp.task('tsc', function(){
   return gulp.src('./source/ts/**/**.ts')
-    .pipe(ts(tsProject))
+    .pipe(tsc(tsProject))
     .js.pipe(gulp.dest('./temp/source/js'));
 });
 
 gulp.task('tsc-tests', function(){
   return gulp.src('./test/**/**.test.ts')
-    .pipe(ts(tsTestProject))
+    .pipe(tsc(tsTestProject))
     .js.pipe(gulp.dest('./temp/test/'));
 });
 
