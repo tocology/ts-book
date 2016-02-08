@@ -30,9 +30,14 @@ If you want light version only for typescript project,
 
 ###  Build
 
+Before doing test at this project, we should 'globally' install some packages with package managers.
+
 ```console
-> npm install -g typescript@next bower tsd gulp browser-sync
-> gulp install
+> npm install -g typescript@next bower tsd gulp browser-sync selenium-standalone
+> npm install
+> bower install
+> tsd install
+> selenium-standalon install
 ```
 
 ### Workflow
