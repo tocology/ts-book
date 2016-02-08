@@ -51,6 +51,7 @@ gulp.task('tsc-tests', function(){
     .js.pipe(gulp.dest('./temp/test/'));
 });
 
+// fix vinly-transform with browersify(>=9.0.0) error
 gulp.task('bundle-js', function(){
   return browserify('./temp/source/js/main.js')
     .bundle()
