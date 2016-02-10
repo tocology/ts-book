@@ -1,5 +1,5 @@
-# temp javascript files (bundle)
-temp/
+# build javascript files (bundle)
+build/
 
 # dist files (it can be generated)
 dist/
