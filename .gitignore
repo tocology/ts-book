@@ -1,7 +1,11 @@
-# build javascript files 
+# automatically compiled files
+source/**/*.js
+test/**/*.test.js
+
+# build javascript files
 build/
 
-# bundled files 
+# bundled files
 bundled/
 
 # report files
