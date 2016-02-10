@@ -14,12 +14,31 @@ module.exports = function (config) {
       'karma-phantomjs-launcher'
     ],
     preprocessors: {
-      './dist/test/*.test.js': ['coverage']
+      './bundled/test/*.test.js': ['coverage']
+    },
+    files: [
+      {
+        pattern: "/bundled/test/bdd.test.js",
+        included: true
+      },
+      {
+        pattern: "/node_modules/jquery/dist/jquery.min.js",
+        included: true
+      },
+      {
+        pattern: "/node_modules/bootstrap/dist/js/bootstrap.min.js",
+        included: true
+      }
+    ],
+    client: {
+      mocha: {
+        ui: "bdd"
+      }
     },
     port: 9876,
     colors: true,
     autoWatch: false,
     singleRun: false,
-    logLevel: config.LOG_INFO
+    logLevel: config.DEBUG
   });
 };
