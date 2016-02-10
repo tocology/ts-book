@@ -1,8 +1,8 @@
-# build javascript files (bundle)
+# build javascript files 
 build/
 
-# dist files (it can be generated)
-dist/
+# bundled files 
+bundled/
 
 # coverage
 coverage/
