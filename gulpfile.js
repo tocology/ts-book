@@ -150,13 +150,21 @@ gulp.task('serve', function(cb){
 });
 
 gulp.task('build', function(cb) {
-  runSequence('lint', ['tsc', 'tsc-tests'], cb);
+  // runSequence('lint', ['tsc', 'tsc-tests'], cb);
+  runSequence(
+    'lint',
+    ['build-source', 'build-test'],
+    cb
+  );
 });
 
 gulp.task('bundle', function(cb){
+  // runSequence('build', [
+  //   'bundle-js', 'bundle-test'
+  // ], cb);
   runSequence('build', [
-    'bundle-js', 'bundle-test'
-  ], cb);
+    'bundle-source', 'bundle-test'
+  ]);
 });
 
 gulp.task('test', function(cb){
