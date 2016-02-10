@@ -4,6 +4,9 @@ build/
 # bundled files 
 bundled/
 
+# report files
+reports/
+
 # coverage
 coverage/
 
