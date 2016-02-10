@@ -15,6 +15,7 @@ var browserify    = require('browserify'),
 var run           = require('gulp-run');
 var runSequence   = require('run-sequence');
 var karma         = require('gulp-karma');
+var nightwatch    = require('gulp-nightwatch');
 var docco         = require('gulp-docco');
 var header        = require('gulp-header')
 var pkg           = require(__dirname + '/package.json');
@@ -50,7 +51,7 @@ gulp.task('build-source', function(){
 });
 
 gulp.task('build-test', function(){
-  return gulp.src(__dirname + "/teset/*.test.ts")
+  return gulp.src(__dirname + "/test/*.test.ts")
     .pipe(tsc(tsTestProject))
     .js.pipe(gulp.dest(__dirname + "/build/test/"));
 });
@@ -133,6 +134,21 @@ gulp.task('run-e2e-test', function(){
     }));
 });
 
+gulp.task('serve', function(cb){
+  browserSync({
+    port: 8080,
+    server: {
+      baseDir: "./"
+    }
+  });
+
+  gulp.watch([
+    "./**/*.js",
+    "./**/*.css",
+    "./index.html"
+  ], browserSync.reload, cb);
+});
+
 gulp.task('build', function(cb) {
   runSequence('lint', ['tsc', 'tsc-tests'], cb);
 });
@@ -150,7 +166,7 @@ gulp.task('test', function(cb){
 gulp.task('browser-sync', ['test'], function(){
   browserSync({
     server: {
-      baseDir: "./dist"
+      baseDir: "./"
     }
   });
 

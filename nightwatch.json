@@ -6,30 +6,30 @@
   },
   "test_settings" : {
     "default" : {
-      "silent" : true,
+      "silent": true,
       "screenshots" : {
         "enabled" : true,
         "path" : "screenshots"
       },
-      "desiredCapabilities" : {
-        "browserName" : "chrome",
+      "desiredCapabilities": {
+        "browserName": "chrome",
         "javascriptEnabled" : true,
         "acceptSslCerts" : true
       }
     },
     "phantomjs" : {
-      "desiredCapabilities" : {
-        "browserName" : "phantomjs",
+      "desiredCapabilities": {
+        "browserName": "phantomjs",
         "javascriptEnabled" : true,
         "acceptSslCerts" : true,
         "phantomjs.binary.path" : "./node_modules/phantomjs/bin/phantomjs"
       }
     },
     "chrome" : {
-      "desiredCapabilities" : {
-        "browserName" : "chrome",
-        "javascriptEnabled" : true,
-        "acceptSslCerts" : true,
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
       }
     }
   }

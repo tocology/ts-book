@@ -28,7 +28,7 @@
     "gulp-docco": "0.0.4",
     "gulp-header": "^1.7.1",
     "gulp-karma": "0.0.5",
-    "gulp-nightwatch": "^0.2.8",
+    "gulp-nightwatch": "^0.2.9",
     "gulp-run": "^1.6.12",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-tslint": "^4.3.1",
